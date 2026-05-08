@@ -1,6 +1,6 @@
 class SinglyNode:
-  def __init__(self, data) -> None:
-    self.data = data
+  def __init__(self, value) -> None:
+    self.value = value
     self.next = None
 
 class SinglyLinkedList:
@@ -14,12 +14,12 @@ class SinglyLinkedList:
     cur = self.head
     display = []
     while cur:
-      display.append(str(cur.data))
+      display.append(str(cur.value))
       cur = cur.next
-    return '->'.join(display)
+    return '->'.join(display) if display else "None"
 
-  def append(self, data):
-    new = SinglyNode(data)
+  def append(self, value):
+    new = SinglyNode(value)
     if not self.head:
       self.head = new
       return
@@ -28,8 +28,8 @@ class SinglyLinkedList:
       cur = cur.next
     cur.next = new
 
-  def append_left(self, data):
-    new = SinglyNode(data)
+  def append_left(self, value):
+    new = SinglyNode(value)
     if not self.head:
       self.head = new
       return
@@ -45,7 +45,7 @@ class SinglyLinkedList:
     if cur.next:
         self.display_reverse(cur.next)
         print('<-', end='')
-    print(cur.data, end='')
+    print(cur.value, end='')
     if cur == self.head:
         print()
 
@@ -53,11 +53,9 @@ class SinglyLinkedList:
     for i in arr:
       self.append(i)
 
-  # pop function has used node.value instead of node.data
-  # need to fix it.
   def pop(self):
     if not self.head:
-      raise ValueError("The linked list is already empty")
+      raise IndexError("The linked list is already empty")
     elif not self.head.next:
       val = self.head.value
       self.head = None
@@ -69,12 +67,17 @@ class SinglyLinkedList:
     cur.next = None
     return val
 
+  def popleft(self):
+    if not self.head:
+      raise IndexError("The linked list is already empty")
+    val = self.head.value
+    self.head = self.head.next
+    return val
 
 
 
 if __name__ == '__main__':
   ll = SinglyLinkedList([1,2,3,4,5])
-  print(ll.pop())
-  print(ll.pop())
-  print(ll.pop())
+  print(ll.popleft())
+  print(ll)
   ll.display_reverse()
