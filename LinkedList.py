@@ -28,12 +28,16 @@ class SinglyLinkedList:
       cur = cur.next
     cur.next = new
 
-  def extend(self, arr: list):
-    for i in arr:
-      self.append(i)
+  def append_left(self, data):
+    new = SinglyNode(data)
+    if not self.head:
+      self.head = new
+      return
+    new.next = self.head
+    self.head = new
 
   def display_reverse(self, cur:SinglyNode=None):
-    if self.head is None:
+    if not self.head:
         print(None)
         return
     if cur is None:
@@ -45,12 +49,32 @@ class SinglyLinkedList:
     if cur == self.head:
         print()
 
+  def extend(self, arr: list):
+    for i in arr:
+      self.append(i)
+
+  # pop function has used node.value instead of node.data
+  # need to fix it.
+  def pop(self):
+    if not self.head:
+      raise ValueError("The linked list is already empty")
+    elif not self.head.next:
+      val = self.head.value
+      self.head = None
+      return val
+    cur = self.head
+    while cur.next and cur.next.next:
+      cur = cur.next
+    val = cur.next.value
+    cur.next = None
+    return val
 
 
 
 
 if __name__ == '__main__':
-  ll = SinglyLinkedList([1,5,3])
-  ll.extend([9,7])
-  print(ll)
+  ll = SinglyLinkedList([1,2,3,4,5])
+  print(ll.pop())
+  print(ll.pop())
+  print(ll.pop())
   ll.display_reverse()
