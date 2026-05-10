@@ -18,6 +18,29 @@ class SinglyLinkedList:
       cur = cur.next
     return '->'.join(display) if display else "None"
 
+  def __len__(self) -> int | None:
+    count = 0
+    cur = self.head
+    while cur:
+      count += 1
+      cur = cur.next
+    return count
+
+  def delete(self, instance):
+    """Deleting a non-existing node will not raise any error."""
+    if not self.head:
+      return
+    cur = self.head
+    if cur.value == instance:
+      self.head = cur.next
+      return
+
+    while cur.next:
+      if cur.next.value == instance:
+        cur.next = cur.next.next
+        return
+      cur = cur.next
+
   def append(self, value):
     new = SinglyNode(value)
     if not self.head:
@@ -77,7 +100,8 @@ class SinglyLinkedList:
 
 
 if __name__ == '__main__':
-  ll = SinglyLinkedList([1,2,3,4,5])
-  print(ll.popleft())
+  ll = SinglyLinkedList([2,6,4])
   print(ll)
+  ll.delete(7)
+  print(ll, len(ll))
   ll.display_reverse()
