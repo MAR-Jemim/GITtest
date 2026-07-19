@@ -346,17 +346,17 @@ def complete_graph_gen(n: int, m: int | None = None) -> tuple[int, list[Edge]]:
 # =========================================================
 
 if __name__ == "__main__":
-    print("TREE")
-    show(*tree_gen(6))
-
-    print("\nFOREST")
-    show(*forest_gen(6, edge_cnt=3))
-
-    print("\nGRAPH")
-    show(*graph_gen(6, edge_cnt=8))
+    # print("TREE")
+    # show(*tree_gen(10))
+    #
+    # print("\nFOREST")
+    # show(*forest_gen(6, edge_cnt=3))
+    #
+    # print("\nGRAPH")
+    # show(*graph_gen(6, edge_cnt=8))
 
     print("\nARRAY")
-    print(array_gen(10, 5, 1, 100))
+    print(array_gen(15, 5, 1, 100))
 
-    print("\nSTRING")
-    print(string_gen(10, alphabet="abc"))
+    # print("\nSTRING")
+    # print(string_gen(10, alphabet="abc"))
