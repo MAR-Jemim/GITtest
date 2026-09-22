@@ -20,7 +20,7 @@ for date in days:
     for mail in range(mails_per_day):
         schedule[date][2].append(next(leads))
 
-        for
+        # for
         # print(next(leads))
 
 # schedule[1] = {'1':6}
